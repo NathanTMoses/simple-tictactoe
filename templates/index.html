@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+            background: black;
+        }
+        table {
+            border-collapse: collapse;
+            margin: auto auto;
+        } 
+        td {
+            border: solid 1px rgb(0, 0, 0);
+            width: 150px;
+            height: 150px;
+            background: rgba(124, 124, 124, 0.8);
+            font-size: 30px;
+            text-align: center;
+        }
+        td > a {
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        button {
+            margin: 20px auto;
+            background: rgba(124, 124, 124, 0.8);
+            border: none;
+            border-radius: 10px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        {% for i in range(3) %}
+            <tr>
+                {% for j in range(3) %}
+                    <td>
+                        {% if game[i][j] %}
+                            {{ game[i][j] }}
+                        {% else %}
+                            <a href="{{ url_for('play', row=i, col=j) }}">Play {{ turn }} here</a>
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <button><a href="{{ url_for('reset') }}">Reset Game</a></button>
+</body>
+</html>
